@@ -2,7 +2,9 @@ async function bookList(){
    let response =  await fetch('http://localhost:3001/listBooks')
    let books = await response.json();
    const bookList = document.getElementById('bookList');
+// Here im fetching the object that has all the books
 
+//Here I am creating a list for the array of books as well as the input boxes and the submit button for updating the quantity on the book
    books.forEach(book => {
         const li = document.createElement('li');
         li.textContent = `${book.title}`;
@@ -20,6 +22,8 @@ async function bookList(){
         submit.textContent = 'Submit'
         bookList.appendChild(submit);
 
+
+        //Ran into some issues here with creating the click event to update the quantity, but was able to fix everything to where the click event properly updates the quantity and when you refresh the page, the correct quantity is shown on the npm start page.
         submit.addEventListener('click', async () => {
             const newQuantity = document.getElementById(`quantity_${book.id}`).value;
 
